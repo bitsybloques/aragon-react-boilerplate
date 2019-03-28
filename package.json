@@ -17,7 +17,6 @@
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.2.2",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.0.1",
@@ -43,8 +42,8 @@
     "publish:minor": "aragon apm publish minor",
     "publish:major": "aragon apm publish major",
     "versions": "aragon apm versions",
-    "lint": "eslint app test; solium --dir ./contracts",
-    "lint:fix": "eslint app test --fix; solium --dir ./contracts --fix",
+    "lint": "eslint .; solium --dir ./contracts",
+    "lint:fix": "eslint . --fix; solium --dir ./contracts --fix",
     "coverage": "SOLIDITY_COVERAGE=true npm run ganache-cli:test",
     "ganache-cli:test": "./node_modules/@aragon/test-helpers/ganache-cli.sh"
   }
