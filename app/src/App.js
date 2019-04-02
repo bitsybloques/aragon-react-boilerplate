@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAragonApi } from '@aragon/api-react'
-import { Main, Button } from '@aragon/ui'
+import { Main, Button, SidePanel } from '@aragon/ui'
 import styled from 'styled-components'
 
 function App() {
   const { api, appState } = useAragonApi()
   const { count, syncing } = appState
+  const [opened, setOpened] = useState(false)
   return (
     <Main>
       <BaseLayout>
@@ -18,8 +19,14 @@ function App() {
           <Button mode="secondary" onClick={() => api.increment(1)}>
             Increment
           </Button>
+          <Button mode="secondary" onClick={() => setOpened(true)}>
+            Open SidePanel
+          </Button>
         </Buttons>
       </BaseLayout>
+      <SidePanel title="Menu" opened={opened} onClose={() => setOpened(false)}>
+        Sidepanel content
+      </SidePanel>
     </Main>
   )
 }
