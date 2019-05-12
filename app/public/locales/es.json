@@ -1,0 +1,9 @@
+{
+  "increment": "Incrementar",
+  "decrement": "Decrementar",
+  "count": "Recuento: {{count}} punto",
+  "count_plural": "Recuento: {{count}} puntos",
+  "sync": {
+    "syncing": "Sincronizando…"
+  }
+}

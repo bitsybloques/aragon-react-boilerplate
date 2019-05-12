@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { AragonApi } from '@aragon/api-react'
+import './i18n'
 import App from './App'
 
 const reducer = state => {
@@ -11,8 +12,10 @@ const reducer = state => {
 }
 
 ReactDOM.render(
-  <AragonApi reducer={reducer}>
-    <App />
-  </AragonApi>,
+  <Suspense fallback="">
+    <AragonApi reducer={reducer}>
+      <App />
+    </AragonApi>
+  </Suspense>,
   document.getElementById('root')
 )

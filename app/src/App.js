@@ -2,22 +2,30 @@ import React from 'react'
 import { useAragonApi } from '@aragon/api-react'
 import { Main, Button } from '@aragon/ui'
 import styled from 'styled-components'
+import { useTranslation, withTranslation } from 'react-i18next'
 
 function App() {
   const { api, appState } = useAragonApi()
   const { count, syncing } = appState
+  console.log(syncing)
+  const { t, i18n } = useTranslation()
   return (
     <Main>
       <BaseLayout>
         {syncing && <Syncing />}
-        <Count>Count: {count}</Count>
+        <Count>{t('count', { count })}</Count>
         <Buttons>
           <Button mode="secondary" onClick={() => api.decrement(1)}>
-            Decrement
+            {t('decrement')}
           </Button>
           <Button mode="secondary" onClick={() => api.increment(1)}>
-            Increment
+            {t('increment')}
           </Button>
+          {i18n.languages[0] === 'en' ? (
+            <Button onClick={() => i18n.changeLanguage('es')}>ES</Button>
+          ) : (
+            <Button onClick={() => i18n.changeLanguage('en')}>EN</Button>
+          )}
         </Buttons>
       </BaseLayout>
     </Main>
@@ -43,10 +51,12 @@ const Buttons = styled.div`
   margin-top: 20px;
 `
 
-const Syncing = styled.div.attrs({ children: 'Syncing…' })`
-  position: absolute;
-  top: 15px;
-  right: 20px;
-`
+const Syncing = withTranslation()(
+  styled.div.attrs(({ t }) => ({ children: t('sync.syncing') }))`
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  `
+)
 
 export default App
